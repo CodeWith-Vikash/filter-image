@@ -10,8 +10,8 @@ let data=[
     {name:'car',image:'https://tse1.mm.bing.net/th?id=OIP.qNJ-3o_aLdtFRswCO9VLOgHaEK&pid=Api&P=0&h=220'},
     {name:'tree',image:'https://tse1.mm.bing.net/th?id=OIP.3XBCr4tx8dEPMPu2jKRaDwHaE8&pid=Api&P=0&h=220'},
     {name:'tree house',image:'https://tse1.mm.bing.net/th?id=OIP.9BHpvU09LFJt9GisohYRVwHaE8&pid=Api&P=0&h=220'},
-    {name: "Petals of roses", image: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=3786&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
-    {name: "Animals of town", image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=2688&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    {name: "petals of roses", image: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=3786&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
+    {name: "animals of town", image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=2688&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
     {name: "the crowd of city", image: "https://images.unsplash.com/photo-1517732306149-e8f829eb588a?q=80&w=3872&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
     {name: "fruits of planet", image: "https://images.unsplash.com/photo-1618897996318-5a901fa6ca71?q=80&w=3764&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
     {name: "orange peeled", image: "https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=3337&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
@@ -30,7 +30,7 @@ const box=document.querySelector('.suggetion')
 const handleSearch=()=>{
     let sug=""
     searchField.addEventListener('input',()=>{
-            let newdata=data.filter((obj)=> obj.name.lowerCase().startsWith(searchField.value))
+            let newdata=data.filter((obj)=> obj.name.startsWith(searchField.value))
         sug=newdata.map((ndata)=>`<div style="background-color:pink; padding:1vh 2vw;border-radius:10px;">${ndata.name}</div>`)
         container.style.opacity="0.1"
         box.style.display="block"
