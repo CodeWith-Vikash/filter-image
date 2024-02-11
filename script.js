@@ -30,7 +30,7 @@ const box=document.querySelector('.suggetion')
 const handleSearch=()=>{
     let sug=""
     searchField.addEventListener('input',()=>{
-            let newdata=data.filter((obj)=> obj.name.startsWith(searchField.value))
+            let newdata=data.filter((obj)=> obj.name.lowerCase().startsWith(searchField.value))
         sug=newdata.map((ndata)=>`<div style="background-color:pink; padding:1vh 2vw;border-radius:10px;">${ndata.name}</div>`)
         container.style.opacity="0.1"
         box.style.display="block"
