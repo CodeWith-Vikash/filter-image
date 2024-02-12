@@ -1,5 +1,6 @@
+
 let data=[
-    {name:'roses',image:'https://tse2.mm.bing.net/th?id=OIP.B6eLSVN1lvkNljW--KaesQHaEo&pid=Api&P=0&h=220'},
+    {name:'rose',image:'https://tse2.mm.bing.net/th?id=OIP.B6eLSVN1lvkNljW--KaesQHaEo&pid=Api&P=0&h=220'},
     {name:'apple',image:'https://tse4.mm.bing.net/th?id=OIP.CXtrIMQqt9mUCPGMwV_n7QHaE8&pid=Api&P=0&h=220'},
     {name:'computer',image:'https://tse4.mm.bing.net/th?id=OIP.6T0Ktm_8qgua4Q59ohY5HgHaDt&pid=Api&P=0&h=220'},
     {name:'apple juice',image:'https://tse4.mm.bing.net/th?id=OIP.95JBLMXWwAMLfKoUZ2L4hAHaF7&pid=Api&P=0&h=220'},
@@ -18,11 +19,15 @@ let data=[
     {name: "web design", image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
     {name: "apple juicy", image: "https://images.unsplash.com/photo-1576673442511-7e39b6545c87?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
 ]
+let tempdata=data
 
 const imageContainer=document.querySelector(".images")
-imageContainer.innerHTML=data.map((obj)=>{
-    return `<img src=${obj.image}/>`
-})
+function updateimage(){
+    imageContainer.innerHTML=data.map((obj)=>{
+        return `<img src=${obj.image}/>`
+    })
+}
+updateimage()
 
 const container=document.querySelector(".imgContainer")
 const searchField=document.querySelector("input")
@@ -31,16 +36,35 @@ const handleSearch=()=>{
     let sug=""
     searchField.addEventListener('input',()=>{
             let newdata=data.filter((obj)=> obj.name.toLowerCase().startsWith(searchField.value.toLowerCase()))
-        sug=newdata.map((ndata)=>`<div style="background-color:pink; padding:1vh 2vw;border-radius:10px;">${ndata.name}</div>`)
-        container.style.opacity="0.1"
-        box.style.display="block"
-        box.innerHTML=sug
-        // updating images
-        imageContainer.innerHTML=newdata.map((obj)=>`<img src=${obj.image}/>`)
+            function updateSugBox(){
+                sug=newdata.map((ndata)=>`<div style="background-color:pink; padding:1vh 2vw;border-radius:10px;" class="list">${ndata.name}</div>`)
+                container.style.opacity="0.1"
+                box.style.display="block"
+                box.innerHTML=sug
+            }
+            updateSugBox()
+        // updating on suggetion click
+        let list=document.querySelectorAll(".list")
+        list.forEach((elem)=>{
+            elem.addEventListener('click',()=>{
+                searchField.value=elem.textContent
+                newdata=data.filter((obj)=>obj.name.toLocaleLowerCase().startsWith(elem.textContent.toLowerCase()))
+                updateSugBox()
+
+                // updating images
+               data=newdata
+               updateimage()
+               data=tempdata
+                
+            })
+        })
+    })
+    searchField.addEventListener('blur',()=>{
+        // updateimage()
+        setTimeout(() => {
+            box.style.display="none"
+            container.style.opacity="1"
+        },100);
     })
 }
 handleSearch()
-searchField.addEventListener('blur',()=>{
-    box.style.display="none"
-    container.style.opacity="1"
-})
