@@ -64,7 +64,7 @@ const handleSearch=()=>{
         setTimeout(() => {
             box.style.display="none"
             container.style.opacity="1"
-        },100);
+        },500);
     })
 }
 handleSearch()
