@@ -9,6 +9,8 @@ img{
     margin: 10px;
 }
 .suggetion{
+    max-height:50vh;
+    overflow:auto;
     display: flex;
     flex-direction: column;
     gap: 0;
