@@ -24,7 +24,7 @@ img{
 
 @media(max-width:425px){
     .suggetion{
-        font-size: 3vmax;
+        font-size: 3vmin;
     }
     .images{
         width: 80vw;
